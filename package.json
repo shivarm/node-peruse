@@ -1,0 +1,49 @@
+{
+  "name": "node-peruse",
+  "version": "0.1.0",
+  "description": "A powerful CLI tool designed to analyze your node.js application.",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
+    "ci": "npm run check-format"
+  },
+  "bin": {
+    "node-peruse": "./bin/peruse.js"
+  },
+  "keywords": [
+    "node",
+    "analyzer",
+    "cli"
+  ],
+  "files": [
+    "src",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "homepage": "https://github.com/shivam-sharma7/node-peruse#README",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivam-sharma7/node-peruse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shivam-sharma7/node-peruse/issues"
+  },
+  "type": "module",
+  "author": "Shivam Sharma <meshivam81@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "figlet": "^1.8.0",
+    "ora": "^8.1.1",
+    "pino": "^9.5.0",
+    "pino-pretty": "^12.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  },
+  "engines": {
+    "node": "12.0.0 || >= 18.0.0"
+  }
+}
