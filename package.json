@@ -14,7 +14,10 @@
   "keywords": [
     "node",
     "analyzer",
-    "cli"
+    "cli",
+    "tool",
+    "peruse",
+    "node-peruse"
   ],
   "files": [
     "src",
