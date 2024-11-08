@@ -2,7 +2,7 @@
 
 import { Command } from 'commander';
 import ora from 'ora';
-import { analyzeDependencies, checkOutdated } from '../src/index.js';
+import { analyzeDependencies, checkOutdated, checkNodeVersion, checkMemory } from '../src/index.js';
 import { logger } from '../src/logger.js';
 import figlet from 'figlet';
 
@@ -21,9 +21,10 @@ program
   .version('0.1.0')
   .description('A CLI tool for analyzing Node.js applications')
   .option('-d, --dependencies', 'Analyze dependencies')
-  .option('-o, --outdated', 'Check for outdated packages');
-
-program.parse(process.argv);
+  .option('-o, --outdated', 'Check for outdated packages')
+  .option('-n, --node-check', 'Check Node.js version compatibility')
+  .option('-m, --memory-check', 'Check system memory'),
+  program.parse(process.argv);
 
 const options = program.opts();
 
@@ -49,4 +50,26 @@ if (options.outdated) {
       spinner.fail('Failed to check outdated packages.');
       logger.error(error.message);
     });
+}
+
+if (options.nodeCheck) {
+  const spinner = ora('Checking Node.js version...').start();
+  try {
+    checkNodeVersion();
+    spinner.succeed('Node.js version check completed.');
+  } catch (error) {
+    spinner.fail('Node.js version check failed.');
+    logger.error(error.message);
+  }
+}
+
+if (options.memoryCheck) {
+  const spinner = ora('Checking system memory...').start();
+  try {
+    checkMemory();
+    spinner.succeed('System memory check completed.');
+  } catch (error) {
+    spinner.fail('System memory check failed.');
+    logger.error(error.message);
+  }
 }
