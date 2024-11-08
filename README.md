@@ -16,6 +16,10 @@ CLI tool designed to help Node.js developers analyze and review node.js project.
 
 - Analyze project dependencies
 - Check outdated dependencies
+- Check Node.js version
+- Check system memory usage
+
+There are many more features to come, so keep on eye on this repository.
 
 ## Download/install
 
@@ -44,10 +48,26 @@ node-peruse --dependencies
 
 ### 2. Check outdated dependencies
 
-To check for outdated packages in your project, use the `--outdated` flag.
+To check outdated packages in your project, use the `--outdated` flag.
 
 ```bash
 node-peruse --outdated
+```
+
+### 3. Check Node.js version
+
+To check node.js version, use the `--node-check` flag.
+
+```bash
+node-peruse --node-check
+```
+
+### 4. Check system memory usage
+
+To check system memory is sufficient, use the `--memory-check` flag.
+
+```bash
+node-peruse --memory-check
 ```
 
 ## Using Node-Peruse with npx
