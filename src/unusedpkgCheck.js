@@ -21,7 +21,7 @@ export const checkUnusedPackage = () => {
   logger.info('Checking for unused dependencies...');
 
   const dependencies = getDependenciesFromPackageJson();
-  const files = glob.sync('**/*.js', { ignore: 'node_modules/**' });
+  const files = glob.sync('**/*.{js,ts}', { ignore: 'node_modules/**' });
   const unusedpkg = [];
 
   for (const pkg of dependencies) {
