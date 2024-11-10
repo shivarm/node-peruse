@@ -70,6 +70,14 @@ To check system memory is sufficient, use the `--memory-check` flag.
 node-peruse --memory-check
 ```
 
+### 5. Check unused dependencies
+
+To check unused dependencies in you node.js application, use the `--unused` flag.
+
+```bash
+node-peruse --unused
+```
+
 ## Using Node-Peruse with npx
 
 To run Node-Peruse without installing it globally, users can simply use:

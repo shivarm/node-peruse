@@ -77,16 +77,17 @@ if (options.memoryCheck) {
 
 if (options.unusedpkg) {
   const spinner = ora('Detecting unused dependencies...').start();
-  checkUnusedPackage()
-    .then((unusedpkg) => {
+  (async () => {
+    try {
+      const unusedpkg = await checkUnusedPackage();
       if (unusedpkg.length === 0) {
         spinner.succeed('No unused dependencies found.');
       } else {
         spinner.succeed('Unused dependencies detection completed.');
       }
-    })
-    .catch((error) => {
+    } catch (error) {
       spinner.fail('Failed to detect unused dependencies.');
       logger.error(error.message);
-    });
+    }
+  })();
 }
