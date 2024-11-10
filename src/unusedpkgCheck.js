@@ -17,24 +17,26 @@ const findDependencyUsage = (dependency, files) => {
   return files.some((file) => regex.test(fs.readFileSync(file, 'utf-8')));
 };
 
-export const checkUnusedPackage = () => {
-  logger.info('Checking for unused dependencies...');
+export const checkUnusedPackage = async () => {
+  try {
+    logger.info('Checking for unused dependencies...');
 
-  const dependencies = getDependenciesFromPackageJson();
-  const files = glob.sync('**/*.{js,ts}', { ignore: 'node_modules/**' });
-  const unusedpkg = [];
+    const dependencies = getDependenciesFromPackageJson();
+    const files = glob.sync('**/*.{js,ts}', { ignore: 'node_modules/**' });
+    const unusedpkg = [];
 
-  for (const pkg of dependencies) {
-    if (!findDependencyUsage(pkg, files)) {
-      unusedpkg.push(pkg);
+    for (const pkg of dependencies) {
+      if (!findDependencyUsage(pkg, files)) {
+        unusedpkg.push(pkg);
+      }
     }
+    if (unusedpkg.length > 0) {
+      logger.warn(`Unused dependencies found: ${unusedpkg.join(', ')}`);
+    } else {
+      logger.info('No unused dependencies found.');
+    }
+    return unusedpkg;
+  } catch (error) {
+    logger.error(error.message);
   }
-
-  if (unusedpkg.length) {
-    logger.warn(`Unused dependencies found: ${unusedpkg.join(', ')}`);
-  } else {
-    logger.info('No unused dependencies found.');
-  }
-
-  return unusedpkg;
 };

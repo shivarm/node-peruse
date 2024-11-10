@@ -4,6 +4,7 @@
   "description": "A powerful CLI tool designed to analyze your node.js application.",
   "main": "index.js",
   "scripts": {
+    "start": "node bin/peruse.js",
     "test": "node --test",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
