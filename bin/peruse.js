@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import ora from 'ora';
 import { analyzeDependencies, checkOutdated, checkNodeVersion, checkMemory, checkUnusedPackage } from '../src/index.js';
 import { logger } from '../src/logger.js';
 import { runTask } from '../utils/task.js';
