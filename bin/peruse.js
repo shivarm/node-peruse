@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import ora from 'ora';
 import { analyzeDependencies, checkOutdated, checkNodeVersion, checkMemory, checkUnusedPackage } from '../src/index.js';
 import { logger } from '../src/logger.js';
+import { runTask } from '../utils/task.js';
 import figlet from 'figlet';
 
 const program = new Command();
@@ -29,65 +29,24 @@ program.parse(process.argv);
 
 const options = program.opts();
 
-if (options.dependencies) {
-  const spinner = ora('Analyzing dependencies').start();
-  analyzeDependencies()
-    .then(() => {
-      spinner.succeed('Dependency analysis completed.');
-    })
-    .catch((error) => {
-      spinner.fail('Dependency analysis failed.');
-      logger.error(error.message);
-    });
-}
-
-if (options.outdated) {
-  const spinner = ora('Checking for outdated packages').start();
-  checkOutdated()
-    .then(() => {
-      spinner.succeed('Outdated packages check completed.');
-    })
-    .catch((error) => {
-      spinner.fail('Failed to check outdated packages.');
-      logger.error(error.message);
-    });
-}
-
-if (options.nodeCheck) {
-  const spinner = ora('Checking Node.js version...').start();
-  try {
-    checkNodeVersion();
-    spinner.succeed('Node.js version check completed.');
-  } catch (error) {
-    spinner.fail('Node.js version check failed.');
-    logger.error(error.message);
+(async () => {
+  if (options.dependencies) {
+    await runTask('Analyzing dependencies', analyzeDependencies);
   }
-}
 
-if (options.memoryCheck) {
-  const spinner = ora('Checking system memory...').start();
-  try {
-    checkMemory();
-    spinner.succeed('System memory check completed.');
-  } catch (error) {
-    spinner.fail('System memory check failed.');
-    logger.error(error.message);
+  if (options.outdated) {
+    await runTask('Checking for outdated packages', checkOutdated);
   }
-}
 
-if (options.unusedpkg) {
-  const spinner = ora('Detecting unused dependencies...').start();
-  (async () => {
-    try {
-      const unusedpkg = await checkUnusedPackage();
-      if (unusedpkg.length === 0) {
-        spinner.succeed('No unused dependencies found.');
-      } else {
-        spinner.succeed('Unused dependencies detection completed.');
-      }
-    } catch (error) {
-      spinner.fail('Failed to detect unused dependencies.');
-      logger.error(error.message);
-    }
-  })();
-}
+  if (options.nodeCheck) {
+    await runTask('Checking Node.js version', checkNodeVersion);
+  }
+
+  if (options.memoryCheck) {
+    await runTask('Checking system memory', checkMemory);
+  }
+
+  if (options.unusedpkg) {
+    await runTask('Detecting unused dependencies', checkUnusedPackage);
+  }
+})();
