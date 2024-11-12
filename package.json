@@ -1,6 +1,6 @@
 {
   "name": "node-peruse",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A powerful CLI tool designed to analyze your node.js application.",
   "main": "index.js",
   "scripts": {
