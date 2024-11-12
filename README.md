@@ -78,6 +78,22 @@ To check unused dependencies in you node.js application, use the `--unused` flag
 node-peruse --unused
 ```
 
+### 6. Check your os architecture
+
+To get os architecture, use the `--arch` flag.
+
+```bash
+node-peruse --arch
+```
+
+### 7. Check your os name
+
+To get your os name, use the `--name` flag.
+
+```bash
+node-peruse --name
+```
+
 ## Using Node-Peruse with npx
 
 To run Node-Peruse without installing it globally, users can simply use:

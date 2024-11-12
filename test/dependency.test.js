@@ -5,14 +5,14 @@ import { checkUnusedPackage } from '../src/unusedpkgCheck.js';
 
 describe('Dependency Analysis', () => {
   it('should pass dependency analyze test', () => {
-    const result = analyzeDependencies();
+    return analyzeDependencies();
   });
 
   it('should pass outdate package analysize test', () => {
-    const result = checkOutdated();
+    return checkOutdated();
   });
 
   it('should pass unused package analysize test', () => {
-    const result = checkUnusedPackage();
+    return checkUnusedPackage();
   });
 });

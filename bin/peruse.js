@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { analyzeDependencies, checkOutdated, checkNodeVersion, checkMemory, checkUnusedPackage } from '../src/index.js';
+import {
+  analyzeDependencies,
+  checkOutdated,
+  checkNodeVersion,
+  checkMemory,
+  checkUnusedPackage,
+  getArchitecture,
+  getOsName,
+} from '../src/index.js';
 import { logger } from '../src/logger.js';
 import { runTask } from '../utils/task.js';
 import figlet from 'figlet';
@@ -23,7 +31,10 @@ program
   .option('-o, --outdated', 'Check for outdated packages')
   .option('-n, --node-check', 'Check Node.js version compatibility')
   .option('-m, --memory-check', 'Check system memory')
-  .option('-u, --unusedpkg', 'Detect unused dependencies');
+  .option('-u, --unusedpkg', 'Detect unused dependencies')
+  .option('-a, --arch', 'Detect system architecture')
+  .option('-os, --name', 'Detect os name')
+  .option('-type, --machine', 'Detect machine type');
 
 program.parse(process.argv);
 
@@ -48,5 +59,13 @@ const options = program.opts();
 
   if (options.unusedpkg) {
     await runTask('Detecting unused dependencies', checkUnusedPackage);
+  }
+
+  if (options.arch) {
+    await runTask('Detecting system architecture', getArchitecture);
+  }
+
+  if (options.name) {
+    await runTask('Detecting operating system name', getOsName);
   }
 })();

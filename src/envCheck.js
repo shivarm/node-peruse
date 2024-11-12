@@ -16,8 +16,6 @@ export const checkNodeVersion = () => {
 export const checkMemory = () => {
   const memoryThreshold = 2 * 1024 * 1024 * 1024; // 2 GB
   const totalMemory = os.totalmem();
-  const getOs = os.type();
-  logger.info(`Operating system ${getOs} detected`);
   if (totalMemory < memoryThreshold) {
     logger.error(`Insufficient system memory. At least 2 GB of RAM is recommended.`);
   } else {
