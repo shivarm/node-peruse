@@ -11,7 +11,7 @@ import {
   getOsName,
 } from '../src/index.js';
 import { logger } from '../src/logger.js';
-import { runTask } from '../utils/task.js';
+import { runTask } from '../src/task.js';
 import figlet from 'figlet';
 
 const program = new Command();
@@ -25,7 +25,7 @@ figlet('node persue', (err, data) => {
 });
 
 program
-  .version('0.3.0')
+  .version('0.3.1')
   .description('A CLI tool for analyzing Node.js applications')
   .option('-d, --dependencies', 'Analyze dependencies')
   .option('-o, --outdated', 'Check for outdated packages')
@@ -33,8 +33,7 @@ program
   .option('-m, --memory-check', 'Check system memory')
   .option('-u, --unusedpkg', 'Detect unused dependencies')
   .option('-a, --arch', 'Detect system architecture')
-  .option('-os, --name', 'Detect os name')
-  .option('-type, --machine', 'Detect machine type');
+  .option('-os, --name', 'Detect os name');
 
 program.parse(process.argv);
 

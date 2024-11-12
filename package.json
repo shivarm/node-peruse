@@ -1,8 +1,8 @@
 {
   "name": "node-peruse",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A powerful CLI tool designed to analyze your node.js application.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "node bin/peruse.js",
     "test": "node --test",
