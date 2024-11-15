@@ -54,8 +54,25 @@ export const validateDocker = async () => {
     } else {
       logger.info('No issues found. Dockerfile follows best practices!');
     }
+
+    const composePath = path.join(process.cwd(), 'compose.yaml');
+    if (!fs.existsSync(composePath)) {
+      throw new Error('Dockerfile not found in the current directory');
+    }
+
+    const content = fs.readFileSync(composeFilePath, 'utf8');
+    const parsed = yaml.load(content);
+
+    if (!parsed.version) {
+      throw new Error('Invalid docker-compose.yml: Missing "version" key.');
+    }
+    if (!parsed.services || typeof parsed.services !== 'object') {
+      throw new Error('Invalid docker-compose.yml: Missing "services" key or incorrect format.');
+    }
+
+    logger.info('docker-compose.yml validation passed.');
   } catch (error) {
-    logger.error('Error while validating Dockerfile:', error);
+    logger.error(`Error while validating dockerfiles: ${error.message}`);
     throw error;
   }
 };

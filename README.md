@@ -94,9 +94,9 @@ To get your os name, use the `--name` flag.
 node-peruse --name
 ```
 
-### 8. Check or validate dockerfile
+### 8. Check or validate dockerfiles
 
-Find issues in your dockerfile, use the `--dockerfile` flag.
+Find issues in your dockerfiles (e.g., Dockerfile, compose.yml), use the `--dockerfile` flag.
 
 ```bash
 node-peruse --dockerfile
