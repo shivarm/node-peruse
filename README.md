@@ -94,6 +94,14 @@ To get your os name, use the `--name` flag.
 node-peruse --name
 ```
 
+### 8. Check or validate dockerfile
+
+Find issues in your dockerfile, use the `--dockerfile` flag.
+
+```bash
+node-peruse --dockerfile
+```
+
 ## Using Node-Peruse with npx
 
 To run Node-Peruse without installing it globally, users can simply use:
