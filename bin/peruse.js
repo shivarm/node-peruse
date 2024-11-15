@@ -9,6 +9,7 @@ import {
   checkUnusedPackage,
   getArchitecture,
   getOsName,
+  validateDocker,
 } from '../src/index.js';
 import { logger } from '../src/logger.js';
 import { runTask } from '../src/task.js';
@@ -33,7 +34,8 @@ program
   .option('-m, --memory-check', 'Check system memory')
   .option('-u, --unusedpkg', 'Detect unused dependencies')
   .option('-a, --arch', 'Detect system architecture')
-  .option('-os, --name', 'Detect os name');
+  .option('-os, --name', 'Detect os name')
+  .option('-dok, --dockerfile', 'Dockerfile validator');
 
 program.parse(process.argv);
 
@@ -66,5 +68,9 @@ const options = program.opts();
 
   if (options.name) {
     await runTask('Detecting operating system name', getOsName);
+  }
+
+  if (options.dockerfile) {
+    await runTask('Validator dockerfile', validateDocker);
   }
 })();
