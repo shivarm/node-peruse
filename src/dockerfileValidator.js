@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import yaml from 'js-yaml';
 import { logger } from './logger.js';
 
 /**
@@ -55,8 +56,8 @@ export const validateDocker = async () => {
       logger.info('No issues found. Dockerfile follows best practices!');
     }
 
-    const composePath = path.join(process.cwd(), 'compose.yaml');
-    if (!fs.existsSync(composePath)) {
+    const composeFilePath = path.join(process.cwd(), 'compose.yaml');
+    if (!fs.existsSync(composeFilePath)) {
       throw new Error('Dockerfile not found in the current directory');
     }
 
@@ -64,10 +65,10 @@ export const validateDocker = async () => {
     const parsed = yaml.load(content);
 
     if (!parsed.version) {
-      throw new Error('Invalid docker-compose.yml: Missing "version" key.');
+      throw new Error('Invalid compose.yml: Missing "version" key.');
     }
     if (!parsed.services || typeof parsed.services !== 'object') {
-      throw new Error('Invalid docker-compose.yml: Missing "services" key or incorrect format.');
+      throw new Error('Invalid compose.yml: Missing "services" key or incorrect format.');
     }
 
     logger.info('docker-compose.yml validation passed.');

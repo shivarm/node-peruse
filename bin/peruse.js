@@ -26,7 +26,7 @@ figlet('node persue', (err, data) => {
 });
 
 program
-  .version('1.3.1')
+  .version('1.3.2')
   .description('A CLI tool for analyzing Node.js applications')
   .option('-d, --dependencies', 'Analyze dependencies')
   .option('-o, --outdated', 'Check for outdated packages')
