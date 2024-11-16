@@ -14,10 +14,11 @@ CLI tool designed to help Node.js developers analyze and review node.js project.
 
 ## Key Features
 
-- Analyze project dependencies
+- Validate dockerfiles
 - Check outdated dependencies
 - Check Node.js version
 - Check system memory usage
+- Analyze project dependencies
 
 There are many more features to come, so keep on eye on this repository.
 
@@ -38,12 +39,12 @@ node-peruse <command> [options]
 
 ## Documentation
 
-### 1. Analyze project dependencies
+### 1. Check or validate dockerfiles
 
-Use the `--dependencies` option to analyze and list all dependencies in your project.
+Find issues in your dockerfiles (e.g., Dockerfile, compose.yml), use the `--dockerfile` flag.
 
 ```bash
-node-peruse --dependencies
+node-peruse --dockerfile
 ```
 
 ### 2. Check outdated dependencies
@@ -94,12 +95,12 @@ To get your os name, use the `--name` flag.
 node-peruse --name
 ```
 
-### 8. Check or validate dockerfiles
+### 8. Analyze project dependencies
 
-Find issues in your dockerfiles (e.g., Dockerfile, compose.yml), use the `--dockerfile` flag.
+Use the `--dependencies` option to analyze and list all dependencies in your project.
 
 ```bash
-node-peruse --dockerfile
+node-peruse --dependencies
 ```
 
 ## Using Node-Peruse with npx
