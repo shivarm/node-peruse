@@ -15,6 +15,7 @@ CLI tool designed to help Node.js developers analyze and review node.js project.
 ## Key Features
 
 - Validate dockerfiles
+- Git commit best practices Validator
 - Check outdated dependencies
 - Check Node.js version
 - Check system memory usage
@@ -47,7 +48,15 @@ Find issues in your dockerfiles (e.g., Dockerfile, compose.yml), use the `--dock
 node-peruse --dockerfile
 ```
 
-### 2. Check outdated dependencies
+### 2. Git commit best practices validator
+
+This feature scans recent Git commits to ensure they follow best practices: (e.g., feat:, fix:, chore:, etc.)
+
+```bash
+node-peruse --git
+```
+
+### 3. Check outdated dependencies
 
 To check outdated packages in your project, use the `--outdated` flag.
 
@@ -55,7 +64,7 @@ To check outdated packages in your project, use the `--outdated` flag.
 node-peruse --outdated
 ```
 
-### 3. Check Node.js version
+### 4. Check Node.js version
 
 To check node.js version, use the `--node-check` flag.
 
@@ -63,7 +72,7 @@ To check node.js version, use the `--node-check` flag.
 node-peruse --node-check
 ```
 
-### 4. Check system memory usage
+### 5. Check system memory usage
 
 To check system memory is sufficient, use the `--memory-check` flag.
 
@@ -71,7 +80,7 @@ To check system memory is sufficient, use the `--memory-check` flag.
 node-peruse --memory-check
 ```
 
-### 5. Check unused dependencies
+### 6. Check unused dependencies
 
 To check unused dependencies in you node.js application, use the `--unused` flag.
 
@@ -79,7 +88,7 @@ To check unused dependencies in you node.js application, use the `--unused` flag
 node-peruse --unused
 ```
 
-### 6. Check your os architecture
+### 7. Check your os architecture
 
 To get os architecture, use the `--arch` flag.
 
@@ -87,7 +96,7 @@ To get os architecture, use the `--arch` flag.
 node-peruse --arch
 ```
 
-### 7. Check your os name
+### 8. Check your os name
 
 To get your os name, use the `--name` flag.
 
@@ -95,7 +104,7 @@ To get your os name, use the `--name` flag.
 node-peruse --name
 ```
 
-### 8. Analyze project dependencies
+### 9. Analyze project dependencies
 
 Use the `--dependencies` option to analyze and list all dependencies in your project.
 
