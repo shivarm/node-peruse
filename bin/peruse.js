@@ -10,6 +10,7 @@ import {
   getArchitecture,
   getOsName,
   validateDocker,
+  validateGitCommits,
 } from '../src/index.js';
 import { logger } from '../src/logger.js';
 import { runTask } from '../src/task.js';
@@ -35,7 +36,8 @@ program
   .option('-u, --unusedpkg', 'Detect unused dependencies')
   .option('-a, --arch', 'Detect system architecture')
   .option('-os, --name', 'Detect os name')
-  .option('-dok, --dockerfile', 'Dockerfile validator');
+  .option('-dok, --dockerfile', 'Dockerfile validator')
+  .option('-g, --git', 'Validate Git commit best practices');
 
 program.parse(process.argv);
 
@@ -72,5 +74,9 @@ const options = program.opts();
 
   if (options.dockerfile) {
     await runTask('Validator dockerfile', validateDocker);
+  }
+
+  if (options.git) {
+    await runTask('Validating Git commits', validateGitCommits);
   }
 })();
