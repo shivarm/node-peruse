@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import { logger } from './logger.js';
 import { execSync } from 'child_process';
-import fetch from 'node-fetch';
+import fetch from 'node:fetch';
 
 export const analyzeDependencies = async () => {
   try {
