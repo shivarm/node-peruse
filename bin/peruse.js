@@ -11,6 +11,7 @@ import {
   getOsName,
   validateDocker,
   validateGitCommits,
+  simulateDependencyImpact,
 } from '../src/index.js';
 import { logger } from '../src/logger.js';
 import { runTask } from '../src/task.js';
@@ -37,7 +38,8 @@ program
   .option('-a, --arch', 'Detect system architecture')
   .option('-os, --name', 'Detect os name')
   .option('-dok, --dockerfile', 'Dockerfile validator')
-  .option('-g, --git', 'Validate Git commit best practices');
+  .option('-g, --git', 'Validate Git commit best practices')
+  .option('-s, --simulate', 'Dependency impact simulator');
 
 program.parse(process.argv);
 
@@ -78,5 +80,8 @@ const options = program.opts();
 
   if (options.git) {
     await runTask('Validating Git commits', validateGitCommits);
+  }
+  if (options.simulate) {
+    await runTask('Simulating dependencies', simulateDependencyImpact);
   }
 })();
