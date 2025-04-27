@@ -56,9 +56,13 @@ export const validateDocker = async () => {
       logger.info('No issues found. Dockerfile follows best practices!');
     }
 
-    const composeFilePath = path.join(process.cwd(), 'compose.yaml');
-    if (!fs.existsSync(composeFilePath)) {
-      throw new Error('Dockerfile not found in the current directory');
+     const composeFileNames = ['compose.yaml', 'compose.yml'];
+     const composeFilePath = composeFileNames
+     .map((file) => path.join(process.cwd(), file))
+     .find((filePath) => fs.existsSync(filePath));
+
+    if (!composeFilePath) {
+    throw new Error('Neither compose.yaml nor compose.yml found in the current directory');
     }
 
     const content = fs.readFileSync(composeFilePath, 'utf8');
