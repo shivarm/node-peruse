@@ -39,7 +39,7 @@
   "author": "Shivam Sharma <meshivam81@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "commander": "^13.0.0",
+    "commander": "^14.0.0",
     "figlet": "^1.8.0",
     "glob": "^11.0.0",
     "js-yaml": "^4.1.0",
